@@ -36,7 +36,6 @@ void inorder(struct node *p){
 
 int main(){
 
-    struct node *temp;
     root = insert(root,10);
     insert(root,6);
     insert(root,5);
