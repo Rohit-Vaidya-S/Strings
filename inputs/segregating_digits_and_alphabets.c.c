@@ -32,5 +32,6 @@ int main() {
     free(storeData);
     free(digits);
     free(characters);
+    
     return 0;
 }
