@@ -8,34 +8,34 @@ struct node{
     struct node *rchild;
 }*root = NULL;
 
-struct node *insert(struct node *p, int key){
+struct node *insert(struct node *passnode, int key){
 
-    struct node *t = NULL;
-    if(p==NULL){
-        t = (struct node *)malloc(sizeof(struct node));
-        t->data = key;
-        t->lchild = t->rchild = NULL;
-        return t;
+    struct node *temp = NULL;
+    if(passnode==NULL){
+        temp = (struct node *)malloc(sizeof(struct node));
+        temp->data = key;
+        temp->lchild = temp->rchild = NULL;
+        
+        return temp;
     }
-    if(key<p->data){
-        p->lchild = insert(p->lchild, key);
+    if(key<passnode->data){
+        passnode->lchild = insert(passnode->lchild, key);
     }
     else{
-        p->rchild = insert(p->rchild, key);
+        passnode->rchild = insert(passnode->rchild, key);
     }
-    return p;
+    return passnode;
 }
 
-void inorder(struct node *p){
-    if(p){
-        inorder(p->lchild);
-        printf("%d ",p->data);
-        inorder(p->rchild);
+void inorder(struct node *passnode){
+    if(passnode){
+        inorder(passnode->lchild);
+        printf("%d ",passnode->data);
+        inorder(passnode->rchild);
     }
 }
 
 int main(){
-
     root = insert(root,10);
     insert(root,6);
     insert(root,5);
@@ -43,5 +43,6 @@ int main(){
 
     inorder(root);
     printf("\n");
-  return 0;
+    
+    return 0;
 }
