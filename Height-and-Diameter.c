@@ -3,9 +3,9 @@
 #include<string.h>
 
 struct node{
-    struct  node *lchild;
+    struct  node *left_child;
     int data;
-    struct node *rchild;
+    struct node *right_child;
 }*root = NULL;
 
 struct node *insert(struct node *passnode, int key){
@@ -13,15 +13,15 @@ struct node *insert(struct node *passnode, int key){
     if(passnode==NULL){
         temp = (struct node *)malloc(sizeof(struct node));
         temp->data = key;
-        temp->lchild = temp->rchild = NULL;
+        temp->left_child = temp->right_child = NULL;
 
         return temp;
     }
     if(key<passnode->data){
-        passnode->lchild = insert(passnode->lchild, key);
+        passnode->left_child = insert(passnode->left_child, key);
     }
     else{
-        passnode->rchild = insert(passnode->rchild, key);
+        passnode->right_child = insert(passnode->right_child, key);
     }
   
     return passnode;
@@ -29,9 +29,9 @@ struct node *insert(struct node *passnode, int key){
 
 void inorder(struct node *passnode){
     if(passnode){
-        inorder(passnode->lchild);
+        inorder(passnode->left_child);
         printf("%d ",passnode->data);
-        inorder(passnode->rchild);
+        inorder(passnode->right_child);
     }
 }
 
@@ -40,10 +40,8 @@ int tree_height(struct node *root) {
 
         return 0;
     else {
-        
-        int left_height = tree_height(root->lchild);
-        int right_height = tree_height(root->rchild);
-      
+        int left_height = tree_height(root->left_child);
+        int right_height = tree_height(root->right_child);
         if (left_height >= right_height)
 
             return left_height + 1;
@@ -58,15 +56,13 @@ int diameter(struct node *tree)
     if (tree == NULL)
 
         return 0;
+    int left_height = tree_height(tree->left_child);
+    int right_height = tree_height(tree->right_child);
+    int left_diameter = diameter(tree->left_child);
+    int right_diameter = diameter(tree->right_child);
+    int max_diameter = (left_diameter >= right_diameter) ? left_diameter : right_diameter;
  
-    int lheight = tree_height(tree->lchild);
-    int rheight = tree_height(tree->rchild);
-    int ldiameter = diameter(tree->lchild);
-    int rdiameter = diameter(tree->rchild);
- 
-    int max_diameter = (ldiameter >= rdiameter) ? ldiameter : rdiameter;
- 
-    return ((lheight + rheight + 1) >= max_diameter) ? (lheight + rheight + 1) : max_diameter;
+    return ((left_height + right_height + 1) >= max_diameter) ? (left_height + right_height + 1) : max_diameter;
 }
 
 int main(){
