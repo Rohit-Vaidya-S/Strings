@@ -27,8 +27,7 @@ int main() {
         for (i = 0; i < length; i++) {
             reversed_str[length - 1 - i] = str[i];
         }
-        reversed_str[length] = '\0'; // adding null character at the end
-        // check if the original and reversed strings are equal
+        reversed_str[length] = '\0'; 
         if (strcmp(str, reversed_str) == 0)
             printf("%s is a palindrome.", str);
         else
