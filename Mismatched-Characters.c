@@ -5,7 +5,7 @@
 int main(){
     char *str1 = (char *)malloc(sizeof(char));
     char *str2 = (char *)malloc(sizeof(char));
-    char *resultantStr = (char *)malloc(sizeof(char));
+    char *misMatchedCharacters = (char *)malloc(sizeof(char));
     printf("Enter two strings each by pressing enter key\n");
     scanf("%[^\n]s",str1);
     scanf(" %[^\n]s",str2);
@@ -21,7 +21,7 @@ int main(){
             }
         }
         if(!found){
-            resultantStr[k++] = str1[i];
+            misMatchedCharacters[k++] = str1[i];
         }
     }
     for(int i = 0; i < len2; i++){
@@ -33,14 +33,14 @@ int main(){
             }
         }
         if(!found){
-            resultantStr[k++] = str2[i];
+            misMatchedCharacters[k++] = str2[i];
         }
     }
-    resultantStr[k] = '\0';
-    printf("%s", resultantStr);
+    misMatchedCharacters[k] = '\0';
+    printf("Mismatched characters from above two strings are %s", misMatchedCharacters);
     free(str1);
     free(str2);
-    free(resultantStr);
+    free(misMatchedCharacters);
   
     return 0;
 }
