@@ -3,9 +3,9 @@
 #include<string.h>
 
 struct node{
-    struct  node *lchild;
+    struct  node *left_child;
     int data;
-    struct node *rchild;
+    struct node *right_child;
 }*root = NULL;
 
 struct node *insert(struct node *passnode, int key){
@@ -13,15 +13,15 @@ struct node *insert(struct node *passnode, int key){
     if(passnode==NULL){
         temp = (struct node *)malloc(sizeof(struct node));
         temp->data = key;
-        temp->lchild = temp->rchild = NULL;
+        temp->left_child = temp->right_child = NULL;
         
         return temp;
     }
     if(key<passnode->data){
-        passnode->lchild = insert(passnode->lchild, key);
+        passnode->left_child = insert(passnode->left_child, key);
     }
     else{
-        passnode->rchild = insert(passnode->rchild, key);
+        passnode->right_child = insert(passnode->right_child, key);
     }
 
     return passnode;
@@ -29,9 +29,9 @@ struct node *insert(struct node *passnode, int key){
 
 void inorder(struct node *passnode){
     if(passnode){
-        inorder(passnode->lchild);
+        inorder(passnode->left_child);
         printf("%d ",passnode->data);
-        inorder(passnode->rchild);
+        inorder(passnode->right_child);
     }
 }
 
