@@ -6,6 +6,7 @@ int main() {
     char *storeData;
     int maxLen = 100; // maximum length of input string
     storeData = (char *)malloc(maxLen * sizeof(char));
+    printf("Enter different characters with digits: ");
     scanf("%[^\n]s",storeData);
     printf("%s", storeData);
     char *digits, *characters;
