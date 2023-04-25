@@ -1,3 +1,5 @@
+// This C program takes two strings as input from the user and checks if the first string is a substring of the second string
+
 #include <stdio.h>
 #include <string.h>
 
@@ -6,7 +8,7 @@ int main() {
     int i, j, len1, len2, found = 0;
     printf("Enter first string: ");
     scanf("%[^\n]s",str1);
-    getchar(); // Consume newline character
+    getchar();
     printf("Enter second string: ");
     scanf("%[^\n]s",str2);
     len1 = strlen(str1);
