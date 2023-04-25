@@ -3,25 +3,25 @@
 #include<string.h>
 
 struct node{
-    struct  node *lchild;
+    struct  node *left_child;
     int data;
-    struct node *rchild;
+    struct node *right_child;
 }*root = NULL;
 
 struct node *insert(struct node *passnode, int key){
-    struct node *t = NULL;
+    struct node *temp = NULL;
     if(passnode==NULL){
         temp = (struct node *)malloc(sizeof(struct node));
         temp->data = key;
-        temp->lchild = temp->rchild = NULL;
+        temp->left_child = temp->right_child = NULL;
 
         return temp;
     }
     if(key<passnode->data){
-        passnode->lchild = insert(passnode->lchild, key);
+        passnode->left_child = insert(passnode->left_child, key);
     }
     else{
-        passnode->rchild = insert(passnode->rchild, key);
+        passnode->right_child = insert(passnode->right_child, key);
     }
 
     return passnode;
@@ -29,12 +29,12 @@ struct node *insert(struct node *passnode, int key){
 
 void preorder(struct node* passnode)
 {
-    if (p == NULL)
+    if (passnode == NULL)
 
         return;
     printf("%d ", passnode->data);
-    preorder(passnode->lchild);
-    preorder(passnode->rchild);
+    preorder(passnode->left_child);
+    preorder(passnode->right_child);
 }
 
 int main(){
