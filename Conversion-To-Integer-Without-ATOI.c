@@ -1,11 +1,15 @@
 #include<stdio.h>
 
 int stringToInt(char str[]){
-    int i=0,sum=0;
+    int i=0,sum=0,sign=1;
+    if (str[i] == '-') {
+        sign = -1;
+        i++;
+    }
     while(str[i]!='\0'){
         if(str[i]< 48 || str[i] > 57){
             printf("Cannot be converted to integer.\n");
-
+            
             return 0;
         }
         else{
@@ -14,7 +18,7 @@ int stringToInt(char str[]){
         }
     }
 
-    return sum;
+    return sign * sum;
 }
 
 int main(){
